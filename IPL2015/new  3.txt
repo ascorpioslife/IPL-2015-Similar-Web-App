@@ -1,0 +1,13 @@
+KKR       MI              1 WON    GAUTAM GAMBHIR                 7 WICKETS
+CSK       DD              2 WON    ASHISH NEHRA                   1 RUNS
+RR        KXIP            3 WON    AJINKYA RAHANE                 26 RUNS
+CSK       SRH             4 WON    BRENDOM MACCULUM               45 RUNS
+RCB       KKR             5 WON    KRIS GAYLE                     3 WICKETS
+RR        DD              6 WON    STEVEN SMITH                   3 WICKETS
+KXIP      MI              7 WON    VIRENDRA SEHWAG                18 RUNS
+SRH       RCB             8 WON    SHIKHAR DHAWAN                 8 WICKETS
+RR        MI              9 WON    SANJU SAMSON                   7 WICKETS
+DD        KXIP           10 WON    Mayank Agarwal                 5 WICKETS
+RR        SRH            11 WON    Ajinkya Rahane                 6 WICKETS
+CSK       MI             12 WON    Ashish Nehra                   6 WICKETS
+DD        SRH            13 WON    JP Duminy                      4 RUNS

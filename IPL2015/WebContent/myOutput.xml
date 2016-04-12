@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><mchdata NMchs="14">
+		<links fUrlBase="http://synd.cricbuzz.com/j2me/1.0/flags/team_"/>
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/BAN_PAK_2015/BAN_PAK_APR19/" grnd="Shere Bangla National Stadium" id="6" inngCnt="0" mchDesc="BAN vs PAK" mnum="2nd ODI" srs="Pakistan tour of Bangladesh, 2015" type="ODI" vcity="Dhaka" vcountry="Bangladesh">
+	 <state TW="" addnStatus="" decisn="" mchState="preview" splStatus="" status="Starts on Apr 19 at 08:30 GMT">
+	</state>
+	<Tm Name="Ban" flag="1" id="6" sName="BAN"/>
+	<Tm Name="Pak" flag="1" id="3" sName="PAK"/>
+	
+	
+	<Tme Dt="Apr 19 2015" enddt="Apr 19 2015" stTme="08:30"/>		
+
+	</match>
+	
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/JAI_CHN_APR19/" grnd="Sardar Patel Stadium" id="1" inngCnt="0" mchDesc="JAI vs CHN" mnum="15th Match" srs="Indian Premier League 2015" type="T20" vcity="Ahmedabad" vcountry="India">
+	 <state TW="" addnStatus="" decisn="" mchState="preview" splStatus="" status="Starts on Apr 19 at 10:30 GMT">
+	</state>
+	<Tm Name="Rajasthan" flag="0" id="64" sName="JAI"/>
+	<Tm Name="Chennai" flag="0" id="58" sName="CHN"/>
+	
+	
+	<Tme Dt="Apr 19 2015" enddt="Apr 19 2015" stTme="10:30"/>		
+
+	</match>
+	
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/BLR_MUM_APR19/" grnd="M.Chinnaswamy Stadium" id="2" inngCnt="0" mchDesc="BLR vs MUM" mnum="16th Match" srs="Indian Premier League 2015" type="T20" vcity="Bengaluru" vcountry="India">
+	 <state TW="" addnStatus="" decisn="" mchState="preview" splStatus="" status="Starts on Apr 19 at 14:30 GMT">
+	</state>
+	<Tm Name="Bangalore" flag="0" id="59" sName="BLR"/>
+	<Tm Name="Mumbai" flag="0" id="62" sName="MUM"/>
+	
+	
+	<Tme Dt="Apr 19 2015" enddt="Apr 19 2015" stTme="14:30"/>		
+
+	</match>
+	
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/MOH_KOL_APR18/" grnd="Maharashtra Cricket Association Stadium" id="4" inngCnt="2" mchDesc="MOH vs KOL" mnum="14th Match" srs="Indian Premier League 2015" type="T20" vcity="Pune" vcountry="India">
+	 <state TW="Kolkata" addnStatus="" decisn="Fielding" mchState="complete" splStatus="" status="Kolkata won by 4 wkts">
+	</state>
+	<Tm Name="Punjab" flag="0" id="65" sName="MOH"/>
+	<Tm Name="Kolkata" flag="0" id="63" sName="KOL"/>
+	
+	
+	<Tme Dt="Apr 18 2015" enddt="Apr 18 2015" stTme="14:30"/>		
+
+	<mscr>
+		<inngsdetail cprtshp="4(1)" crr="8.92" noofovers="50" rrr="0"/>
+	<btTm id="63" sName="KOL">
+			<Inngs Decl="0" FollowOn="0" desc="Inns" ovrs="17.5" r="159" wkts="6"/>
+	</btTm>
+	<blgTm id="65" sName="MOH">
+			<Inngs Decl="0" FollowOn="0" desc="Inns" ovrs="20" r="155" wkts="9"/>
+	</blgTm>
+
+	</mscr>
+	</match>
+	
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/HYD_DEL_APR18/" grnd="Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium" id="3" inngCnt="2" mchDesc="HYD vs DEL" mnum="13th Match" srs="Indian Premier League 2015" type="T20" vcity="Visakhapatnam" vcountry="India">
+	 <state TW="Delhi" addnStatus="" decisn="Batting" mchState="complete" splStatus="" status="Delhi won by 4 runs">
+	</state>
+	<Tm Name="Hyderabad" flag="0" id="255" sName="HYD"/>
+	<Tm Name="Delhi" flag="0" id="61" sName="DEL"/>
+	
+	
+	<Tme Dt="Apr 18 2015" enddt="Apr 18 2015" stTme="10:30"/>		
+
+	<mscr>
+		<inngsdetail cprtshp="" crr="8.15" noofovers="50" rrr="0"/>
+	<btTm id="255" sName="HYD">
+			<Inngs Decl="0" FollowOn="0" desc="Inns" ovrs="20" r="163" wkts="8"/>
+	</btTm>
+	<blgTm id="61" sName="DEL">
+			<Inngs Decl="0" FollowOn="0" desc="Inns" ovrs="20" r="167" wkts="4"/>
+	</blgTm>
+
+	</mscr>
+	</match>
+	
+	
+	
+		<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_WI_ENG/WI_ENG_APR13_APR17/" grnd="Sir Vivian Richards Stadium" id="12" inngCnt="4" mchDesc="WI vs ENG" mnum="1st Test" srs="England tour of West Indies, 2015" type="TEST" vcity="North Sound, Antigua" vcountry="West Indies">
+	 <state TW="WI" addnStatus="" decisn="Fielding" mchState="complete" splStatus="" status="Match drawn">
+	</state>
+	<Tm Name="WI" flag="1" id="10" sName="WI"/>
+	<Tm Name="Eng" flag="1" id="9" sName="ENG"/>
+	
+	
+	<Tme Dt="Apr 13 2015" enddt="Apr 17 2015" stTme="14:00"/>		
+
+	<mscr>
+		<inngsdetail cprtshp="56(110)" crr="2.7" noofovers="0" rrr="0"/>
+	<btTm id="10" sName="WI">
+			<Inngs Decl="0" FollowOn="0" desc="2nd Inns" ovrs="129.4" r="350" wkts="7"/>
+			<Inngs Decl="0" FollowOn="0" desc="1st Inns" ovrs="113" r="295" wkts="10"/>
+	</btTm>
+	<blgTm id="9" sName="ENG">
+			<Inngs Decl="1" FollowOn="0" desc="2nd Inns" ovrs="86" r="333" wkts="7"/>
+			<Inngs Decl="0" FollowOn="0" desc="1st Inns" ovrs="110.4" r="399" wkts="10"/>
+	</blgTm>
+
+	</mscr>
+	</match>
+	
+	
+	
+	<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/MOH_KOL_APR18/" id="14608" inngCnt="2" mchDesc="MOH vs KOL" mnum="14th Match" srs="Indian Premier League 2015" type="T20">
+	
+		<state mchState="Result" status="Kolkata won by 4 wkts">	</state>
+			<manofthematch NoOfPlayers="1">
+				<mom Name="Andre Russell"/>
+			</manofthematch>
+		<Tm Name="Punjab" flag="0" id="65" sName="MOH"/>
+		<Tm Name="Kolkata" flag="0" id="63" sName="KOL"/>
+		
+		<Tme Dt="Apr 18 2015" enddt="Apr 18 2015" stTme="14:30"/>
+
+	</match>
+	
+	
+	<match datapath="http://synd.cricbuzz.com/j2me/1.0/match/2015/2015_T20_LEAGUE/HYD_DEL_APR18/" id="14607" inngCnt="2" mchDesc="HYD vs DEL" mnum="13th Match" srs="Indian Premier League 2015" type="T20">
+	
+		<state mchState="Result" status="Delhi won by 4 runs">	</state>
+			<manofthematch NoOfPlayers="1">
+				<mom Name="Jean-Paul Duminy"/>
+			</manofthematch>
+		<Tm Name="Hyderabad" flag="0" id="255" sName="HYD"/>
+		<Tm Name="Delhi" flag="0" id="61" sName="DEL"/>
+		
+		<Tme Dt="Apr 18 2015" enddt="Apr 18 2015" stTme="10:30"/>
+
+	</match>
+	</mchdata>

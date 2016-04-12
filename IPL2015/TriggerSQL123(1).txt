@@ -1,0 +1,118 @@
+create trigger trigsix after insert on ipl.batsc referencing new as n for each row update ipl.player set sixs=sixs+n.sixs where p_id=n.p_id
+
+create trigger trigfour after insert on ipl.batsc referencing new as n for each row update ipl.player set fours=fours+n.fours where p_id=n.p_id
+
+create trigger trigrun after insert on ipl.batsc referencing new as n for each row update ipl.player set runs=runs+n.runs where p_id=n.p_id
+
+create trigger trigfifty after insert on ipl.batsc referencing new as n for each row update ipl.player set fifty=fifty+1 where p_id=n.p_id and n.runs>=50 and n.runs<100
+
+create trigger trighundred after insert on ipl.batsc referencing new as n for each row update ipl.player set hundred=hundred+1 where p_id=n.p_id and n.runs>100
+
+create trigger trigwt after insert on ipl.ballsc referencing new as n for each row update ipl.player set wtaken=wtaken+n.wtaken where p_id=n.p_id
+
+create trigger trigcatch after insert on ipl.batsc referencing new as n for each row update ipl.player set catches=catches+1 where name=n.CAUGHTBY and type_of_out='catch'
+
+create trigger trigwltm after insert on ipl.result referencing new as n for each row begin if n.status='WIN' then update ipl.team set no_of_matches=no_of_matches+1,lose=lose+1 where name=n.loser; update ipl.team set no_of_matches=no_of_matches+1,win=win+1 where name=n.team_name; else update ipl.team set no_of_matches=no_of_matches+1 where name=n.team_name; end if; end
+
+create trigger trignorating after update on ipl.VOTES referencing new as n for each row update ipl.player set likes=likes+n.rating where p_id=n.p_id
+
+create trigger trigrecordbt after insert on ipl.batsc referencing new as n for each row MODE DB2SQL begin ATOMIC if n.runs > 149 and n.runs<200 then insert into ipl.record (p_id,matchno,description) values(n.p_id,n.matchno,'150+ runs'); elseif n.runs>199 then insert into ipl.record (p_id,matchno,description) values(n.p_id,n.matchno,'200+ runs'); end if; end
+
+create trigger trigrecordbl after insert on ipl.ballsc referencing new as n for each row MODE DB2SQL begin ATOMIC if n.wtaken>=5 then insert into ipl.record(p_id,matchno,description) values(n.p_id,n.matchno,'5 wicket haul'); end if; end
+
+/*economy rate*/
+create trigger trigecon after insert on ipl.ballsc referencing new as n for each row begin declare ovbw float(5); declare runcn int; set ovbw=(select sum(tover) from ipl.ballsc where p_id=n.p_id); set runcn=(select sum(runcn) from ipl.ballsc where p_id=n.p_id); update ipl.player set econ=(runcn/ovbw) where p_id=n.p_id;  end
+
+/*strike rate*/
+
+create trigger trigstrk after insert on ipl.batsc referencing new as n for each row begin declare balpl int ; declare rm int; set balpl=(select sum(balls_played) from ipl.batsc where p_id=n.p_id); set rm=(select sum(runs) from ipl.batsc where p_id=n.p_id); update ipl.player set strR=((cast (rm as float(5))/cast(balpl as float(5)) )*100.0) where p_id=n.p_id;  end
+
+/*Net Run Rate*/
+
+/**create trigger trigsrt after insert on ipl.result referencing new as n for each row MODE DB2SQL begin ATOMIC 
+declare totovers1 float(5); declare totwik1 int; declare totruns1 int; declare totovers2 float(5); declare totwik2 int; declare totruns2 int; declare totruncn1 int;
+declare totruncn2 int; declare totoverpl1 float(5); declare totoverpl2 float(5); 
+set totruns1=(select sum(runs) from ipl.batsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); 
+set totruncn1=(select sum(runcn) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id));
+set totovers1=(select sum(tover) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id));
+set totoverpl1=(select sum(balls_played) from ipl.batsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id));
+set totwik1=(select sum(wtaken) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id));
+set totruns2=(select sum(runs) from ipl.batsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id));
+set totruncn2=(select sum(runcn) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id));
+set totovers2=(select sum(tover) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); 
+set totoverpl2=(select sum(balls_played) from ipl.batsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id));
+set totwik2=(select sum(wtaken) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); 
+set totoverpl1=(totoverpl1/6); set totoverpl2=(totoverpl2/6); 
+if totwik1!='10' and totwik2!='10' then 
+   insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,20.0,20.0,20.0,20.0) ;
+
+elseif n.team_name!=(select toss from ipl.match where matchno=n.matchno) then 
+   insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,totoverpl1,20.0,totoverpl1,20.0) ;
+else 
+   insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,0.0,0.0,0.0,0.0) ;
+end if; 
+end
+**/
+
+
+
+
+
+create trigger trigsrt after insert on ipl.result referencing new as n for each row MODE DB2SQL begin ATOMIC declare totovers1 float(5); declare totwik1 int; declare totruns1 int; declare totovers2 float(5); declare totwik2 int; declare totruns2 int; declare totruncn1 int; declare totruncn2 int; declare totoverpl1 float(5); declare totoverpl2 float(5); set totruns1=(select sum(runs) from ipl.batsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); set totruncn1=(select sum(runcn) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); set totovers1=(select sum(tover) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); set totoverpl1=(select sum(balls_played) from ipl.batsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); set totwik1=(select sum(wtaken) from ipl.ballsc b where b.matchno=n.matchno and n.team_name=(select team_name from ipl.player where p_id=b.p_id)); set totruns2=(select sum(runs) from ipl.batsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); set totruncn2=(select sum(runcn) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); set totovers2=(select sum(tover) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); set totoverpl2=(select sum(balls_played) from ipl.batsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); set totwik2=(select sum(wtaken) from ipl.ballsc b where b.matchno=n.matchno and n.loser=(select team_name from ipl.player where p_id=b.p_id)); set totoverpl1=(totoverpl1/6); set totoverpl2=(totoverpl2/6); if totwik1!='10' and totwik2!='10' then    insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,20.0,20.0,20.0,20.0); elseif n.team_name!=(select toss from ipl.match where matchno=n.matchno) then insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,totoverpl1,20.0,totoverpl1,20.0); else insert into ipl.garbage values(n.matchno,totruns1,totruncn1,totruns2,totruncn2,0.0,0.0,0.0,0.0); end if; end
+
+
+/**CREATE TRIGGER TOBECON after insert on ipl.garbage referencing new as n for each row MODE DB2SQL begin ATOMIC 
+declare winners varchar(30);
+declare losers varchar(30);
+declare winrnmdl int;
+declare winrncnl int;
+declare losrnmdl int;
+declare losrncnl int;
+declare winovmdl float(5);
+declare winovcnl float(5);
+declare losovmdl float(5);
+declare losovcnl float(5);
+declare winrnmdw int;
+declare winrncnw int;
+declare losrnmdw int;
+declare losrncnw int;
+declare winovmdw float(5);
+declare winovcnw float(5);
+declare losovmdw float(5);
+declare losovcnw float(5);
+set winners=(select team_name from ipl.result where matchno=n.matchno);
+set losers=(select loser from ipl.result where matchno=n.matchno);
+set winrnmdw=(select sum(runmdbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners));
+set winrnmdl=(select sum(runmdbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners));
+
+set winrncnw=(select sum(runcnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners));
+set winrncnl=(select sum(runcnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners));
+
+set losrnmdw=(select sum(runmdbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers));
+set losrnmdl=(select sum(runmdbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers));
+
+set losrncnw=(select sum(runcnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers));
+set losrncnl=(select sum(runcnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers));
+
+set winovmdw=(select sum(vroverplbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners));
+set winovmdl=(select sum(vroverplbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners));
+
+set winovcnw=(select sum(vrovercnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners));
+set winovcnl=(select sum(vrovercnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners));
+
+set losovmdw=(select sum(vroverplbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers));
+set losovmdl=(select sum(vroverplbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers));
+
+set losovcnw=(select sum(vrovercnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers));
+set losovcnl=(select sum(vrovercnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers));
+
+update ipl.team set nrr=(((winrnmdw+winrnmdl)/(winovmdw+winovmdl))-((winrncnw+winrncnl)/(winovcnw+winovcn1))) where name=winners;
+update ipl.team set nrr=(((losrnmdw+losrnmdl)/(losovmdw+losovmdl))-((losrncnw+losrncnl)/(losovcnw+losovcnl))) where name=losers;
+end
+**/
+
+
+
+
+
+CREATE TRIGGER TOBECON after insert on ipl.garbage referencing new as n for each row MODE DB2SQL begin ATOMIC declare winners varchar(30); declare losers varchar(30); declare winrnmdl int; declare winrncnl int; declare losrnmdl int; declare losrncnl int; declare winovmdl float(5); declare winovcnl float(5); declare losovmdl float(5); declare losovcnl float(5); declare winrnmdw int; declare winrncnw int; declare losrnmdw int; declare losrncnw int; declare winovmdw float(5); declare winovcnw float(5); declare losovmdw float(5); declare losovcnw float(5); set winners=(select team_name from ipl.result where matchno=n.matchno); set losers=(select loser from ipl.result where matchno=n.matchno); set winrnmdw=(select sum(runmdbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners)); set winrnmdl=(select sum(runmdbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners)); set winrncnw=(select sum(runcnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners)); set winrncnl=(select sum(runcnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners)); set losrnmdw=(select sum(runmdbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers)); set losrnmdl=(select sum(runmdbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers)); set losrncnw=(select sum(runcnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers)); set losrncnl=(select sum(runcnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers)); set winovmdw=(select sum(vroverplbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners)); set winovmdl=(select sum(vroverplbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners)); set winovcnw=(select sum(vrovercnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=winners)); set winovcnl=(select sum(vrovercnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=winners)); set losovmdw=(select sum(vroverplbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers)); set losovmdl=(select sum(vroverplbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers)); set losovcnw=(select sum(vrovercnbywi) from ipl.garbage where matchno in (select matchno from ipl.result where team_name=losers)); set losovcnl=(select sum(vrovercnbylo) from ipl.garbage where matchno in (select matchno from ipl.result where loser=losers)); update ipl.team set nrr=(((winrnmdw+winrnmdl)/(winovmdw+winovmdl))-((winrncnw+winrncnl)/(winovcnw+winovcnl))) where name=winners; update ipl.team set nrr=(((losrnmdw+losrnmdl)/(losovmdw+losovmdl))-((losrncnw+losrncnl)/(losovcnw+losovcnl))) where name=losers; end
